@@ -15,19 +15,26 @@ class MainViewModel : ViewModel() {
 
 
     fun increaseUpper() {
-
+        if (upperCounterMutableStateFlow.value > 0 && lowerCounterMutableStateFlow.value > 0) {
+            upperCounterMutableStateFlow.value += 1
+            lowerCounterMutableStateFlow.value -= 1
+        }
     }
 
     fun increaseLower() {
-
-    }
-
-    fun resetScores() {
-
+        if (upperCounterMutableStateFlow.value > 0 && lowerCounterMutableStateFlow.value > 0) {
+            lowerCounterMutableStateFlow.value += 1
+            upperCounterMutableStateFlow.value -= 1
+        }
     }
 
     fun isGameFinished(): Boolean {
-        return false
+        return upperCounterMutableStateFlow.value == 0 || lowerCounterMutableStateFlow.value == 0
+    }
+
+    fun resetScores() {
+        upperCounterMutableStateFlow.value = 10
+        lowerCounterMutableStateFlow.value = 10
     }
 
 
